@@ -15,16 +15,16 @@ class libPyLog:
 		"""
 		Method that generates an application log
 
-		:arg message (str): Message displayed in the log
-		:arg log_level (int): Level of the log (INFO, WARNING, ERROR)
-		:arg name_log (str): Name that appears in the log
+		:arg message (string): Message displayed in the log
+		:arg log_level (integer): Level of the log (INFO, WARNING, ERROR)
+		:arg name_log (string): Name that appears in the log
 		
 		Keyword Args:
-        	:arg use_stream_handler (int): If the stream type log was used 
-        	:arg use_file_handler (bool): If the file type log is used
-        	:arg name_file_log (str): Log path in case to use a file type log
-        	:arg user (str): Username to belongs the file type log
-        	:arg group (str): Groupname to belongs the file type log
+        	:arg use_stream_handler (boolean): If the stream type log was used 
+        	:arg use_file_handler (boolean): If the file type log is used
+        	:arg name_file_log (string): Log path in case to use a file type log
+        	:arg user (string): Username to belongs the file type log
+        	:arg group (string): Groupname to belongs the file type log
 		"""
 		logger = getLogger(name_log)
 		logger.setLevel(INFO)
@@ -41,7 +41,8 @@ class libPyLog:
 			formatter_file_handler = Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 			fh.setFormatter(formatter_file_handler)
 			logger.addHandler(fh)
-			self.__utils.changeOwnerToPath(path_log_file, kwargs["user"], kwargs["group"])
+			if "user" in kwargs and "group" in kwargs:
+				self.__utils.changeOwnerToPath(path_log_file, kwargs["user"], kwargs["group"])
 		if log_level == 1:
 			logger.info(message)
 		elif log_level == 2:
