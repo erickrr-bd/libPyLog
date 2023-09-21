@@ -10,6 +10,11 @@ Easy log creation with Python.
 
 # Installation
 
+Copy the "libPyLog" folder to the following path:
+
+`/usr/local/lib/python3.9/site-packages`
+
+**NOTE:** The path may change depending on the version of Python.
 
 # Commercial Support
 ![Tekium](https://github.com/unmanarc/uAuditAnalyzer2/blob/master/art/tekium_slogo.jpeg)
