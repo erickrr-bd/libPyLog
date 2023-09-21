@@ -1,19 +1,15 @@
-# libPyLog
+# libPyLog v1.2
 
-Author: Erick Rodríguez
-
-Email: erickrr.tbd93@gmail.com, erodriguez@tekium.mx
-
-License: GPLv3
-
-Library for generating application logs using stream handler, file handler or both.
-
+Easy log creation with Python.
 
 # Requirements
 - CentOS 8, Red Hat 8 or Rocky Linux 8
-- Python 3.6
+- Python 3.9
 - Python Libraries
   - libPyUtils
+
+# Installation
+
 
 # Commercial Support
 ![Tekium](https://github.com/unmanarc/uAuditAnalyzer2/blob/master/art/tekium_slogo.jpeg)
