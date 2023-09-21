@@ -1,6 +1,11 @@
 # libPyLog v1.2
 
-Easy log creation with Python.
+Easy creation of application logs with Python.
+
+# Characteristics
+
+- Creation of application logs in a file.
+- Creation of application logs in stream mode.
 
 # Requirements
 - CentOS 8, Red Hat 8 or Rocky Linux 8
