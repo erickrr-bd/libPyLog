@@ -6,43 +6,43 @@ class libPyLog:
 
 	def __init__(self):
 		"""
-		Method that corresponds to the constructor of the class.
+		Class constructor.
 		"""
 		self.__utils = libPyUtils()
 
 
-	def generateApplicationLog(self, message, log_level, name_log, **kwargs):
+	def generateApplicationLog(self, message, log_level, log_name, **kwargs):
 		"""
-		Method that generates an application log
+		Method that creates application logs.
 
 		:arg message (string): Message displayed in the log
-		:arg log_level (integer): Level of the log (INFO, WARNING, ERROR)
-		:arg name_log (string): Name that appears in the log
+		:arg log_level (integer): Log criticality level (1 - INFO, 2 - WARNING, 3 - ERROR).
+		:arg log_name (string): Log name.
 		
 		Keyword Args:
-        	:arg use_stream_handler (boolean): If the stream type log was used 
-        	:arg use_file_handler (boolean): If the file type log is used
-        	:arg name_file_log (string): Log path in case to use a file type log
-        	:arg user (string): Username to belongs the file type log
-        	:arg group (string): Groupname to belongs the file type log
+        	:arg use_stream_handler (boolean): If the log were created with a stream handler.
+        	:arg use_file_handler (boolean): If the log were created with a file handler.
+        	:arg log_file_name (string): Absolute path where the log file will be created.
+        	:arg user (string): Owner user of the log file.
+        	:arg group (string): Group owner of the log file.
 		"""
-		logger = getLogger(name_log)
+		logger = getLogger(log_name)
 		logger.setLevel(INFO)
 		if (logger.hasHandlers()):
    	 		logger.handlers.clear()
-		if "use_stream_handler" in kwargs and kwargs["use_stream_handler"] == True:
+		if "use_stream_handler" in kwargs and kwargs["use_stream_handler"]:
 			sh = StreamHandler()
 			formatter_stream_handler = Formatter('%(levelname)s - %(name)s - %(message)s')
 			sh.setFormatter(formatter_stream_handler)
 			logger.addHandler(sh)
-		if "use_file_handler" in kwargs and kwargs["use_file_handler"] == True:
-			path_log_file = kwargs["name_file_log"] + str(date.today()) + ".log"
+		if "use_file_handler" in kwargs and kwargs["use_file_handler"]:
+			path_log_file = kwargs["log_file_name"] + str(date.today()) + ".log"
 			fh = FileHandler(path_log_file)
 			formatter_file_handler = Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 			fh.setFormatter(formatter_file_handler)
 			logger.addHandler(fh)
 			if "user" in kwargs and "group" in kwargs:
-				self.__utils.changeOwnerToPath(path_log_file, kwargs["user"], kwargs["group"])
+				self.__utils.changeFileFolderOwner(path_log_file, kwargs["user"], kwargs["group"], "640")
 		if log_level == 1:
 			logger.info(message)
 		elif log_level == 2:
