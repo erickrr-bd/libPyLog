@@ -15,7 +15,7 @@ Ideal for easy log writing in Python applications.
 - Red Hat 8 or Rocky Linux 8 (Tested on Rocky Linux 8.10)
 - Python 3.12
 - Python Libraries
-  - libPyUtils V2.1
+  - libPyUtils v2.1
 
 # Installation
 
