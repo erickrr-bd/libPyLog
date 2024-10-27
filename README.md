@@ -1,25 +1,29 @@
-# libPyLog v1.2
+# libPyLog v2.1
 
-Easy creation of application logs with Python.
+Easy log writing with Python.
+
+Ideal for easy log writing in Python applications.
 
 # Characteristics
 
-- Creation of application logs in a file.
-- Creation of application logs in stream mode.
+- Write logs to a file.
+- Write logs on screen.
+- Write both at the same time.
+- Owner change option (user and group). Requires permits for its operation.
 
 # Requirements
-- CentOS 8, Red Hat 8 or Rocky Linux 8
-- Python 3.9
+- Red Hat 8 or Rocky Linux 8 (Tested on Rocky Linux 8.10)
+- Python 3.12
 - Python Libraries
-  - libPyUtils
+  - libPyUtils V2.1
 
 # Installation
 
 Copy the "libPyLog" folder to the following path:
 
-`/usr/local/lib/python3.9/site-packages`
+`/usr/local/lib/python3.12/site-packages`
 
-**NOTE:** The path may change depending on the version of Python.
+**NOTE:** The path changes depending on the version of Python used.
 
 # Commercial Support
 ![Tekium](https://github.com/unmanarc/uAuditAnalyzer2/blob/master/art/tekium_slogo.jpeg)
