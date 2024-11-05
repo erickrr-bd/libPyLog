@@ -42,7 +42,7 @@ class libPyLog:
 			stream_handler.setFormatter(stream_handler_format)
 			logger.addHandler(stream_handler)
 		if "use_file_handler" in kwargs and kwargs["use_file_handler"]:
-			log_file = kwargs["file_name"] + str(date.today()) + ".log"
+			log_file = kwargs["file_name"] + '-' + str(date.today()) + ".log"
 			file_handler = FileHandler(log_file)
 			file_handler_format = Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 			file_handler.setFormatter(file_handler_format)
