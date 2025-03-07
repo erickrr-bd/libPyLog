@@ -25,12 +25,12 @@ class libPyLog:
 			name (str): Log name.
 		
 		Keyword Args:
-        	use_stream_handler (bool): Option to create a log that is only displayed on the screen.
-        	use_file_handler (bool): Option to create a log file.
-        	file_name (str): Log file.
-        	user (str): Owner user.
-        	group (str): Group owner.
-        """
+			use_stream_handler (bool): Option to create a log that is only displayed on the screen.
+			use_file_handler (bool): Option to create a log file.
+			file_name (str): Log file.
+			user (str): Owner user.
+			group (str): Group owner.
+		"""
 		logger = getLogger(name)
 		logger.setLevel(INFO)
 		if(logger.hasHandlers()):
