@@ -2,35 +2,34 @@
 Author: Erick Roberto Rodriguez Rodriguez
 Email: erodriguez@tekium.mx, erickrr.tbd93@gmail.com
 GitHub: https://github.com/erickrr-bd/libPyLog
-libPyLog v2.1 - October 2024
+libPyLog v2.2 - March 2025
 """
 from datetime import date
+from dataclasses import dataclass
 from libPyUtils import libPyUtils
 from logging import getLogger, INFO, Formatter, FileHandler, StreamHandler
 
+@dataclass
 class libPyLog:
+	"""
+	Easy writing of application logs with Python.
+	"""
 
-	def __init__(self):
+	def create_log(self, message: str, level: int, name: str, **kwargs) -> None:
 		"""
-		Class constructor.
-		"""
-		self.utils = libPyUtils()
+		Method that creates application logs (stream and file).
 
-
-	def create_log(self, message, level, name, **kwargs):
-		"""
-		Method that creates logs.
-
-		:arg message (string): Log's message.
-		:arg level (integer): Criticality level.
-		:arg name (string): Log's name.
+		Parameters:
+			message (str): Message to display in the log.
+			level (int): Level or criticality of the log.
+			name (str): Log name.
 		
 		Keyword Args:
-        	:arg use_stream_handler (boolean): Option to create a log that is only displayed on the screen.
-        	:arg use_file_handler (boolean): Option to create a log file.
-        	:arg file_name (string): Log file path.
-        	:arg user (string): Owner user.
-        	:arg group (string): Group owner.
+        	use_stream_handler (bool): Option to create a log that is only displayed on the screen.
+        	use_file_handler (bool): Option to create a log file.
+        	file_name (str): Log file.
+        	user (str): Owner user.
+        	group (str): Group owner.
         """
 		logger = getLogger(name)
 		logger.setLevel(INFO)
@@ -48,7 +47,8 @@ class libPyLog:
 			file_handler.setFormatter(file_handler_format)
 			logger.addHandler(file_handler)
 			if "user" in kwargs and "group" in kwargs:
-				self.utils.change_owner(log_file, kwargs["user"], kwargs["group"], "640")
+				utils = libPyUtils()
+				utils.change_owner(log_file, kwargs["user"], kwargs["group"], "644")
 		match level:
 			case 1:
 				logger.debug(message)
