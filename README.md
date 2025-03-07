@@ -1,8 +1,8 @@
-# libPyLog v2.1
+# libPyLog v2.2
 
-Easy log writing with Python.
+Easy writing of application logs with Python.
 
-Ideal for easy log writing in Python applications.
+This project was born from the need to have a library that allows the easy creation of application logs using Python.
 
 # Characteristics
 
@@ -15,7 +15,7 @@ Ideal for easy log writing in Python applications.
 - Red Hat 8 or Rocky Linux 8 (Tested on Rocky Linux 8.10)
 - Python 3.12
 - Python Libraries
-  - libPyUtils v2.1
+  - libPyUtils v2.2
 
 # Installation
 
