@@ -2,7 +2,7 @@
 Author: Erick Roberto Rodriguez Rodriguez
 Email: erodriguez@tekium.mx, erickrr.tbd93@gmail.com
 GitHub: https://github.com/erickrr-bd/libPyLog
-libPyLog v2.2 - March 2025
+libPyLog v2.2 - July 2025
 """
 from datetime import date
 from dataclasses import dataclass
@@ -48,7 +48,7 @@ class libPyLog:
 			logger.addHandler(file_handler)
 			if "user" in kwargs and "group" in kwargs:
 				utils = libPyUtils()
-				utils.change_owner(log_file, kwargs["user"], kwargs["group"], "644")
+				utils.change_owner(log_file, kwargs["user"], kwargs["group"], "640")
 		match level:
 			case 1:
 				logger.debug(message)
