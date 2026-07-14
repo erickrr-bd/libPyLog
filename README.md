@@ -1,4 +1,4 @@
-# libPyLog (2.2.1)
+# libPyLog (v2.2.1)
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Logging Engine](https://img.shields.io/badge/engine-standard%20logging-orange.svg)](https://docs.python.org/3/library/logging.html)
@@ -31,6 +31,19 @@ Standard logging implementations often create files with generic system permissi
 
 ---
 
+## ⚙️ Requirements
+
+To run this library and its integration modules, the following system and Python specifications are required:
+
+### 1. System & Runtime Environment
+* **Python 3.10+**: Crucial for native pattern matching syntax (`match-case`) used across the routing and logging engines.
+* **Linux OS**: Required for managing native file ownership (`chown`), system groups, and execution permissions (`chmod`).
+
+### 2. Python Dependencies
+* **libPyUtils**
+
+---
+
 ## 📋 API Usage Reference
 
 ### Method: `create_log`
@@ -39,19 +52,76 @@ Standard logging implementations often create files with generic system permissi
 def create_log(self, message: str, level: int, name: str, **kwargs) -> None
 ```
 
-Parameters
+Parameters:
 - message (str): The text message or exception object to register.
-
 - level (int): Logging severity represented as an integer:
-
-- 1: DEBUG
-
-- 2: INFO
-
-- 3: WARNING
-
-- 4: ERROR
-
-- 5: CRITICAL
-
+    - 1: DEBUG
+    - 2: INFO
+    - 3: WARNING
+    - 4: ERROR
+    - 5: CRITICAL
 - name (str): The unique identifier/logger channel name.
+
+Keyword Arguments (kwargs):
+- use_stream_handler (bool): If True, enables clean stdout logging format to the terminal.
+- use_file_handler (bool): If True, enables writing logs to disk. (Requires file_name).
+- file_name (str): Base file path/prefix where the date-bound file will be created.
+- user (str): The target UNIX user who will own the file.
+- group (str): The target UNIX group who will own the file.
+
+---
+
+## 🚀 Quick Start Example
+Here is how you can seamlessly integrate libPyLog into your application:
+
+```python
+from libPyLog import libPyLog
+
+# Initialize the logger
+logger = libPyLog()
+
+# 1. Standard Console-only Informational Log
+logger.create_log(
+    message="System menu rendered successfully.",
+    level=2,  # INFO
+    name="TUI_Menu",
+    use_stream_handler=True
+)
+
+# 2. Hardened File-only Warning Log
+# This will write to: "/var/log/snap-tool-2026-07-14.log"
+logger.create_log(
+    message="Connection attempt took longer than expected.",
+    level=3,  # WARNING
+    name="ES_Network",
+    use_file_handler=True,
+    file_name="/var/log/snap-tool",
+    user="snap_tool",
+    group="snap_tool"
+)
+
+# 3. Secure Error Log (Both Console & File Output)
+try:
+    1 / 0
+except ZeroDivisionError as e:
+    logger.create_log(
+        message=f"Critical operation failed: {str(e)}",
+        level=4,  # ERROR
+        name="Calculator",
+        use_stream_handler=True,
+        use_file_handler=True,
+        file_name="/var/log/snap-tool",
+        user="snap_tool",
+        group="snap_tool"
+    )
+```
+---
+
+## 📄 File Permissions Verification
+Once the log file is generated, you can verify that the library successfully enforced system permissions and restricted local exposure:}
+
+```bash
+$ ls -l /var/log/snap-tool-*.log
+-rw-r----- 1 snap_tool snap_tool 342 Jul 14 17:15 /var/log/snap-tool-2026-07-14.log
+```
+(Notice the -rw-r----- [640] mask, preventing standard local system users from accessing and viewing technical stack traces).
