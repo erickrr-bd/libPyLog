@@ -37,3 +37,21 @@ Standard logging implementations often create files with generic system permissi
 
 ```python
 def create_log(self, message: str, level: int, name: str, **kwargs) -> None
+```
+
+Parameters
+- message (str): The text message or exception object to register.
+
+- level (int): Logging severity represented as an integer:
+
+- 1: DEBUG
+
+- 2: INFO
+
+- 3: WARNING
+
+- 4: ERROR
+
+- 5: CRITICAL
+
+- name (str): The unique identifier/logger channel name.
